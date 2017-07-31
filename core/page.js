@@ -5,7 +5,6 @@ export default class Page {
     this.props    = props   || {};
     this.context  = context || {};
 
-    // 语法糖
     defineStateProperty(this);
     bindingThisPrototype(this);
   }

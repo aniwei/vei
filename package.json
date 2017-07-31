@@ -1,8 +1,8 @@
 {
   "name": "vei",
-  "version": "0.0.14",
+  "version": "0.0.18",
   "description": "",
-  "main": "dist/vei.js",
+  "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config webpack.config.prod.js"
   },
