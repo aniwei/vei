@@ -96,58 +96,41 @@ module.exports = VirtualText;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createElement = exports.render = exports.View = exports.Page = undefined;
+exports.default = undefined;
 
-var _core = __webpack_require__(2);
-
-var _core2 = _interopRequireDefault(_core);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Page = exports.Page = _core2.default.Page;
-var View = exports.View = _core2.default.View;
-var render = exports.render = _core2.default.render;
-var createElement = exports.createElement = _core2.default.createElement;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _page = __webpack_require__(3);
+var _page = __webpack_require__(2);
 
 var _page2 = _interopRequireDefault(_page);
 
-var _view = __webpack_require__(4);
+var _view = __webpack_require__(3);
 
 var _view2 = _interopRequireDefault(_view);
 
-var _render = __webpack_require__(5);
+var _render = __webpack_require__(4);
 
 var _render2 = _interopRequireDefault(_render);
 
-var _createElement = __webpack_require__(6);
+var _createElement = __webpack_require__(5);
 
 var _createElement2 = _interopRequireDefault(_createElement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = {
-  View: _view2.default,
-  Page: _page2.default,
-  render: _render2.default,
-  createElement: _createElement2.default
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Vei = function Vei() {
+  _classCallCheck(this, Vei);
 };
+
+Vei.Page = _page2.default;
+Vei.View = _view2.default;
+Vei.render = _render2.default;
+Vei.createElement = _createElement2.default;
+exports.default = Vei;
 module.exports = exports['default'];
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -241,7 +224,7 @@ function bindingPrototype(object) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -297,7 +280,7 @@ function defineProperty(dist, property, descriptor) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -392,7 +375,7 @@ function renderComponent(instance) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -403,7 +386,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createElement;
 
-var _veiVdom = __webpack_require__(7);
+var _veiVdom = __webpack_require__(6);
 
 function createElement(type, props, children, host) {
   // 2 为自定义vnode  
@@ -420,27 +403,27 @@ function createElement(type, props, children, host) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-  VirtualNode: __webpack_require__(8),
+  VirtualNode: __webpack_require__(7),
   VirtualText: __webpack_require__(0),
-  VirtualJSX: __webpack_require__(11),
-  VirtualProp: __webpack_require__(12)
+  VirtualJSX: __webpack_require__(10),
+  VirtualProp: __webpack_require__(11)
 };
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var kebaCase = __webpack_require__(9);
+var kebaCase = __webpack_require__(8);
 //var encode      = require('he').encode;
 var VirtualText = __webpack_require__(0);
 
@@ -674,7 +657,7 @@ var types = {
 };
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1109,10 +1092,10 @@ function words(string, pattern, guard) {
 }
 
 module.exports = kebabCase;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1142,7 +1125,7 @@ try {
 module.exports = g;
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1165,7 +1148,7 @@ VirtualJSX.prototype = {
 module.exports = VirtualJSX;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

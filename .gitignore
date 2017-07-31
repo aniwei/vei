@@ -3,3 +3,4 @@ test.js
 .tern-port
 npm-debug.log
 .DS_Store
+core
