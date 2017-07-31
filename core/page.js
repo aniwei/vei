@@ -1,7 +1,9 @@
+import View from './view';
 
+export default class Page extends View  {
+  constructor (props, context) {   
+    super(props, context);
 
-export default class Page {
-  constructor (props, context) {    
     this.props    = props   || {};
     this.context  = context || {};
 
@@ -16,9 +18,6 @@ export default class Page {
   onLoad () {}
 
   onShow () {}
-
-  
-
  }
 
 
