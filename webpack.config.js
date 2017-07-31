@@ -1,11 +1,9 @@
 var path    = require('path');
 
 module.exports = {
-  entry: {
-    dist: path.join(__dirname , 'index.js')
+  entry: { 
+    index: './index.js'
   },
-
-  // devtool: 'cheap-module-eval-source-map',
 
   output: { 
     path: path.join(__dirname, '/dist/'), 
@@ -19,7 +17,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx|\.js?$/,
+        test: /\.js$/,
         loaders: 'babel-loader'
       }
     ]
@@ -27,4 +25,4 @@ module.exports = {
   plugins: [
   ]
 };
-
+console.log(module.exports)

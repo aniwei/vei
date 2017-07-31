@@ -1,0 +1,11 @@
+{
+    "presets": ["es2015", "stage-0"],
+    "plugins": [
+        "syntax-jsx",
+        "add-module-exports",
+        "transform-object-assign",
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        "transform-proto-to-assign"
+    ]
+}
