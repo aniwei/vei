@@ -11,3 +11,7 @@ webpackConfig.plugins.push(
   })
 );
 
+
+module.exports = webpackConfig;
+
+console.log(module.exports)

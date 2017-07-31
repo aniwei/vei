@@ -2,14 +2,14 @@ var path    = require('path');
 
 module.exports = {
   entry: {
-    dist: __dirname + '/index.js'
+    dist: path.join(__dirname , 'index.js')
   },
 
   // devtool: 'cheap-module-eval-source-map',
 
   output: { 
-    path: __dirname + '/dist/', 
-    filename: 'vx.js'
+    path: path.join(__dirname, '/dist/'), 
+    filename: 'vei.js'
   },
 
   resolve: {
@@ -19,8 +19,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx|\.vx|\.js?$/,
-        loaders: 'babel-loader!vx-loader'
+        test: /\.jsx|\.js?$/,
+        loaders: 'babel-loader'
       }
     ]
   },
