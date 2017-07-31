@@ -1,5 +1,7 @@
 var path          = require('path');
+var webpack       = require('webpack');
 var webpackConfig = require('./webpack.config.js');
+var complier;
 
 webpackConfig.devtool = 'cheap-module-eval-source-map';
 webpackConfig.plugins.push(
@@ -11,7 +13,4 @@ webpackConfig.plugins.push(
   })
 );
 
-
 module.exports = webpackConfig;
-
-console.log(module.exports)
