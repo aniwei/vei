@@ -7,12 +7,14 @@ export default class Page extends View  {
     this.props    = props   || {};
     this.context  = context || {};
 
+    this.__view_type__ = 'page';
+
     defineStateProperty(this);
     bindingThisPrototype(this);
   }
 
   setState (state) {
-    this.setDate(state);
+    this.setData(state);
   }
 
   onLoad () {}
