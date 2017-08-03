@@ -10,7 +10,12 @@ module.exports = {
     filename: 'vei.js'
   },
 
-  resolve: {},
+  resolve: {
+    module: [
+      path.join(__dirname, 'src'),
+      'node_modules'
+    ]
+  },
 
   module: {
 

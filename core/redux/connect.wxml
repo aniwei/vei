@@ -1,0 +1,1 @@
+<import src="page-view.view.wxml" /><template is="page-view" data="{{ onLoad: this.onLoad.bind(this), __viewid__: '7' }}"></template>

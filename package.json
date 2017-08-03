@@ -25,6 +25,6 @@
     "webpack": "^3.4.1"
   },
   "dependencies": {
-    "vei-vdom": "0.0.11"
+    "vei-vdom": "0.x.x"
   }
 }

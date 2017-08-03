@@ -1,88 +1,96 @@
+import Context from './context';
 
-export default function render(vnode, options, callback, parentContext = { context: {} }) {  
-  const prev = vnode._component;
-  let root;
+let context = new Context();
+
+export default function render(vnode, options = {
+  forceRegiste: true
+}, callback) {  
+  let root = mountVnode(vnode, context);
   
-  if (!prev) {
-    root = mountVnode(vnode, parentContext);
+  if (options.forceRegiste) {
+    const ctx = context.top().search('__view_this__');
+
+    if ('__view_this__' in ctx) {
+      Page(ctx.__view_this__);
+    } else {
+      throw new Error(`There is no Page registed!`);
+    }
   }
-  
+
   if (callback) {
     callback();
   }
 
-  root.__view_page__ = render.__view_page__;
-
-  render.__view_page__ = null;
-
-  return Page(root.__view_page__);
+  return root;
 }
 
-function mountVnode(vnode, parentContext) {
+function mountVnode(vnode, ctx) {
   let { vtype } = vnode;
 
   switch (vtype) {
     case 1:
-      return mountElement(vnode, parentContext);
+      return mountElement(vnode, ctx);
     case 2:
-      return mountComponent(vnode, parentContext);
+      return mountComponent(vnode, ctx);
     default:
-      return mountElement(vnode); 
+      return mountElement(vnode, ctx); 
   }
-}
+} 
 
 
-function mountElement (vnode, parentContext) {
+function mountElement (vnode, ctx) {
   const { children } = vnode;
 
   if (children) {
     vnode.children = children.map((child) => {
-      return mountVnode(child, parentContext);
-    });
+      return mountVnode(child, context);
+    }).filter((child) => child);
   }
 
   return vnode;
 }
 
-function mountComponent (vnode, parentContext) {
-  const { type, props, children, host } = vnode;
-  const newProp = Object.assign({}, props);
-  let context;
-  
-  newProp.children = children && children.length > 0 ? 
-    children : null;
+function mountContext (inst, context) {
+  let ctx;
 
-  if (type.contextTypes) {
-    context = childContext(parentContext, type.contextTypes);
+  if (inst.getChildContext) {
+    ctx = new Context(inst.getChildContext())
+
+    if (ctx) {
+      context.link(ctx);
+      context = ctx;
+    }
   }
 
-  const instance = new type(newProp, parentContext);
-  vnode.instance = instance;
+  return context;
+}
 
-  instance.props          = newProp;
-  instance.context        = parentContext;
-  instance.__vnode__      = vnode;
+function mountComponent (vnode, ctx) {
+  const { type, props, children, host } = vnode;
+  const newProp = Object.assign({}, props);
+  
+  if (children) {
+    newProp.children = children;
+  } else {
+    newProp.children = null;
+  }
 
-  instance.__viewid__ = props.__viewid__;
 
-  if (instance.__view_type__ === 'page') {
-    
-    instance.state = Object.assign({__viewid__: instance.__viewid__}, instance.state);
+  const inst = new type(
+    newProp, 
+    context.contextForTypes(type.contextTypes)
+  );
+  
+  vnode.instance = inst;
+  context = mountContext(inst, ctx);
 
-    if (!render.__view_page__) {
-      render.__view_page__ = instance;
-    }
-  } 
+  const rendered = renderComponent(inst);
 
-  instance.__view_page__  = render.__view_page__;
+  inst.vnode = rendered;
 
-  const rendered = renderComponent(instance);
+  const vdom = mountVnode(inst.vnode, context);
 
-  instance.vnode = rendered;
-
-  const vdom = mountElement(instance.vnode, parentContext);
-
-  return instance || vdom;
+  return inst;
 }
 
 function renderComponent (instance) {
@@ -95,20 +103,4 @@ function renderComponent (instance) {
   }
 
   return vnode;
-}
-
-function childContext (context, contextTypes) {
-  const keys  = Object.getOwnPropertyNames(contextTypes);
-  const proto = '__proto__';
-  const cxt   = {};
-
-  keys.forEach((key) => {
-    cxt[key] = context[key];
-  });
-
-  cxt[proto] = context;
-
-  context = ctx;
-
-  return Object.assign(cxt);
 }
