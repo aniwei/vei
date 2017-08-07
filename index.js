@@ -1,17 +1,26 @@
-import Page from './core/views/page';
-import Component from './core/views/component';
-import render from './core/render';
-import createElement from './core/create-element';
-import Provider from './core/redux/provider';
-import connect from './core/redux/connect';
+import JSXComponent         from './jsx/jsx-component';
+import JSXElement           from './jsx/jsx-element';
+import JSXText              from './jsx/jsx-text';
+import JSXExpression        from './jsx/jsx-expression';
+import Children             from './jsx/children';
+import createElement        from './jsx/create-element';
+import createApplication    from './application/create-application';
 
-export default {
-  Page,
-  Component,
-  render,
+import View                 from './views/view';
+import Page                 from './views/page';
+import Component            from './views/component';
+
+export {
+  Children,
+  JSXComponent,
+  JSXElement,
+  JSXText,
+  JSXExpression,
+
   createElement,
-  Provider,
-  connect
-}
+  createApplication,
 
-
+  View,
+  Page,
+  Component
+};
