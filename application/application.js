@@ -32,7 +32,7 @@ export default function createApplication (element) {
   app.render = function (element) {
     this.renderer     = new Renderer({ app: app });
     this.__rendered__ = this.renderer.render(element);
-    this.__json__     = deserialize(this.__rendered__);
+    this.__json__     = deserialize(this.__rendered__, {});
   }
 
   app.transform = function (element) {

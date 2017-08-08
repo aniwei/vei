@@ -68,6 +68,7 @@ export default class Renderer {
     const elem = component.render();
 
     component.__element__ = elem;
+    elem.__vnode__        = element;
     elem.__component__    = component;
 
     return this.render(elem, context);
